@@ -355,8 +355,34 @@
       background: transparent;
       position: relative;
       transition: background 0.25s ease;
+      cursor: pointer;
+      user-select: none;
     }
     .task-card:hover { background: var(--paper-light); }
+    .task-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+    .task-card::after {
+      content: "✓ Copied";
+      position: absolute;
+      top: 1.85rem;
+      right: 1.6rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(-3px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+    .task-card.is-copied { background: var(--paper-light); }
+    .task-card.is-copied::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .task-num {
       font-family: var(--mono);
       font-size: 0.7rem;
@@ -611,7 +637,7 @@
           <span class="line"><span class="word-nonlinear">No live call required.</span></span>
         </h1>
         <div class="hero-after">
-          <p class="sub">Send me a business task you keep avoiding. I'll record a custom screen-share video showing you how to use ChatGPT to complete it, improve it or organize it — then give you the exact prompts and simple instructions so you can repeat the process.</p>
+          <p class="sub">You know there's probably a way to do this faster with ChatGPT — you just don't want to figure it out from scratch. Send me the task. I record a custom screen-share, then hand you the prompts and simple instructions so you can repeat the process.</p>
           <div class="cta-block">
             <a href="mailto:creativeequityhub@gmail.com?subject=Custom%20AI%20Task%20Walkthrough%20%E2%80%94%20task%20submission&body=Hi%20April%2C%0A%0AHere%27s%20the%20task%20I%27d%20like%20a%20walkthrough%20for.%0A%0A1.%20What%20business%20task%20do%20you%20want%20help%20with%3F%0A%0A%0A2.%20Where%20is%20the%20current%20version%3F%20%28Paste%20the%20text%20or%20link.%29%0A%0A%0A3.%20Who%20is%20this%20for%3F%0A%0A%0A4.%20What%20do%20you%20want%20the%20finished%20version%20to%20help%20you%20do%3F%0A%0A%0A5.%20What%20tone%20or%20style%20should%20it%20have%3F%0A%0A%0A6.%20Where%20will%20you%20use%20this%20after%20it%20is%20done%3F%0A%0A%0AThanks%2C" class="cta" data-cta="hero">Send your task <span class="cta-arrow">→</span></a>
             <p class="cta-micro">$300 · Delivered in 3–5 business days</p>
@@ -626,7 +652,7 @@
           <span class="section-tag">01 — What this is</span>
         </div>
         <div class="section-body">
-          <p class="prose">A custom walkthrough for one specific business task — not a class, not coaching, not unlimited AI training. You send the task. I record the screen-share. You get the video, the prompts and the instructions to do it again on your own.</p>
+          <p class="prose">A custom walkthrough for one specific business task — not a class, not coaching, not unlimited AI training. You send the task. I figure out the ChatGPT workflow. You get the video, the prompts and the instructions to do it again on your own.</p>
           <blockquote class="pull">You don't need to learn AI from scratch. You need one business task finished in a way you can repeat.</blockquote>
         </div>
       </div>
@@ -639,15 +665,15 @@
           <p class="section-lede">Pick one. Bring the raw material you already have.</p>
         </div>
         <ul class="task-grid">
-          <li class="task-card"><span class="task-num">01</span><h3>Improve a Craigslist ad</h3><p>Your ad already has the raw material. We turn it into a clearer version you can reuse.</p></li>
-          <li class="task-card"><span class="task-num">02</span><h3>Rewrite a service description</h3><p>From vague to specific, so people understand what you do and why to book.</p></li>
-          <li class="task-card"><span class="task-num">03</span><h3>Clean up a business bio</h3><p>One short, usable bio you can drop into a profile, pitch or directory.</p></li>
-          <li class="task-card"><span class="task-num">04</span><h3>Create a simple FAQ</h3><p>The five questions every customer asks, written so they answer themselves.</p></li>
-          <li class="task-card"><span class="task-num">05</span><h3>Draft follow-up messages</h3><p>A short, reusable sequence for leads who go quiet after the first reply.</p></li>
-          <li class="task-card"><span class="task-num">06</span><h3>Turn reviews into posts</h3><p>Your existing reviews become marketing copy you can use this week.</p></li>
-          <li class="task-card"><span class="task-num">07</span><h3>Create content prompts</h3><p>A week of post ideas built from what you already do, not random topics.</p></li>
-          <li class="task-card"><span class="task-num">08</span><h3>Improve a Google Business description</h3><p>Make the description match the actual reason people book you.</p></li>
-          <li class="task-card"><span class="task-num">09</span><h3>Turn rough notes into a promo post</h3><p>Bring the messy version. We shape it into something you can publish.</p></li>
+          <li class="task-card" role="button" tabindex="0"><span class="task-num">01</span><h3>Improve a Craigslist ad</h3><p>Your ad already has the raw material. We turn it into a clearer version you can reuse.</p></li>
+          <li class="task-card" role="button" tabindex="0"><span class="task-num">02</span><h3>Rewrite a service description</h3><p>From vague to specific, so people understand what you do and why to book.</p></li>
+          <li class="task-card" role="button" tabindex="0"><span class="task-num">03</span><h3>Clean up a business bio</h3><p>One short, usable bio you can drop into a profile, pitch or directory.</p></li>
+          <li class="task-card" role="button" tabindex="0"><span class="task-num">04</span><h3>Create a simple FAQ</h3><p>The five questions every customer asks, written so they answer themselves.</p></li>
+          <li class="task-card" role="button" tabindex="0"><span class="task-num">05</span><h3>Draft follow-up messages</h3><p>A short, reusable sequence for leads who go quiet after the first reply.</p></li>
+          <li class="task-card" role="button" tabindex="0"><span class="task-num">06</span><h3>Turn reviews into posts</h3><p>Your existing reviews become marketing copy you can use this week.</p></li>
+          <li class="task-card" role="button" tabindex="0"><span class="task-num">07</span><h3>Create content prompts</h3><p>A week of post ideas built from what you already do, not random topics.</p></li>
+          <li class="task-card" role="button" tabindex="0"><span class="task-num">08</span><h3>Improve a Google Business description</h3><p>Make the description match the actual reason people book you.</p></li>
+          <li class="task-card" role="button" tabindex="0"><span class="task-num">09</span><h3>Turn rough notes into a promo post</h3><p>Bring the messy version. We shape it into something you can publish.</p></li>
         </ul>
       </div>
     </section>
@@ -772,5 +798,52 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const cards = document.querySelectorAll('.task-card');
+      const fallbackCopy = (text) => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (_) {}
+        ta.remove();
+      };
+      cards.forEach((card) => {
+        const title = card.querySelector('h3')?.textContent.trim() || '';
+        card.setAttribute('aria-label', `Copy "${title}" to clipboard`);
+        let timer;
+        const flash = () => {
+          card.classList.add('is-copied');
+          clearTimeout(timer);
+          timer = setTimeout(() => card.classList.remove('is-copied'), 1600);
+        };
+        const copy = async () => {
+          if (!title) return;
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(title);
+            } else {
+              fallbackCopy(title);
+            }
+          } catch (_) {
+            fallbackCopy(title);
+          }
+          flash();
+        };
+        card.addEventListener('click', copy);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            copy();
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
